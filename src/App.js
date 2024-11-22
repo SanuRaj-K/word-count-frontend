@@ -7,7 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  axios.defaults.baseURL = "http://localhost:5001/search";
+  // axios.defaults.baseURL = "http://localhost:5001/search";
+  axios.defaults.baseURL = "https://wordcount-z0dq.onrender.com";
   return (
     <div className="App bg-white">
       <ToastContainer position="top-right" />
