@@ -12,7 +12,7 @@ const Search = () => {
     const toastId = toast.loading("Loading...");
   
     if (domainName.length < 1) {
-      toast.error("Please enter your URL", { id: toastId });
+      toast.error("Please enter your URL");
       toast.dismiss(toastId); 
     } else {
       const regex = /^(ftp|http|https):\/\/[^ "]+$/;
@@ -32,13 +32,13 @@ const Search = () => {
           toast.dismiss(toastId); 
           navigate("/table");
         } else {
-          toast.error("Something went wrong...", { id: toastId });
+          toast.error("Something went wrong...");
           toast.dismiss(toastId); 
         }
       })
       .catch((err) => {
         console.log("err", err);
-        toast.error("Domain name is already searched", { id: toastId });
+        toast.error("Domain name is already searched");
         toast.dismiss(toastId); 
       });
   };
