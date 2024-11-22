@@ -8,12 +8,15 @@ const Search = () => {
   const navigate = useNavigate();
 
   const handleGetInsights = () => {
+    const toastID = toast.loading("Loading...");
     if (domainName.length < 1) {
-      toast.error("Please enter your URL");
+      toast.error("Please enter your URL", { toastId: toastID });
     } else {
       const regex = /^(ftp|http|https):\/\/[^ "]+$/;
       if (!regex.test(domainName)) {
-        toast.error("Invalid URL. Please enter a valid domain name.");
+        toast.error("Invalid URL. Please enter a valid domain name.", {
+          toastId: toastID,
+        });
         return;
       }
     }
@@ -24,12 +27,12 @@ const Search = () => {
         if (res.status === 200) {
           navigate("/table");
         } else {
-          toast.error("something went wrong...");
+          toast.error("something went wrong...", { toastId: toastID });
         }
       })
       .catch((err) => {
         console.log("err", err);
-        toast.error("Domain name is already searched");
+        toast.error("Domain name is already searched", { toastId: toastID });
       });
   };
   return (
