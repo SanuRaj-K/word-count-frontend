@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { toast } from "react-toastify";
-
+ 
 const Search = () => {
   const [domainName, setDomainName] = useState("");
   const navigate = useNavigate();
@@ -57,8 +57,12 @@ const Search = () => {
             Get insights
           </button>
         </div>
+        <div className="flex justify-end text-[14px] text-black underline">
+          <Link to={'/table'}>View Table</Link>
+        </div>
       </div>
-    </div>
+      
+     </div>
   );
 };
 
