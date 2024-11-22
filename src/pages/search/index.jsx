@@ -8,13 +8,18 @@ const Search = () => {
   const navigate = useNavigate();
 
   const handleGetInsights = () => {
-    const regex = /^(ftp|http|https):\/\/[^ "]+$/;
-    if (!regex.test(domainName)) {
-      toast.error("Invalid URL. Please enter a valid domain name.");
-      return;
+    if (domainName.length < 1) {
+      toast.error("Please enter your URL");
+    } else {
+      const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+      if (!regex.test(domainName)) {
+        toast.error("Invalid URL. Please enter a valid domain name.");
+        return;
+      }
     }
+
     axios
-      .post("/posturl", { domainName })
+      .post("/add", { domainName })
       .then((res) => {
         if (res.status === 200) {
           navigate("/table");

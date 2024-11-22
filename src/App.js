@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  axios.defaults.baseURL = "http://localhost:5001/";
+  axios.defaults.baseURL = "http://localhost:5001/search";
   return (
     <div className="App bg-white">
       <ToastContainer position="top-right" />
