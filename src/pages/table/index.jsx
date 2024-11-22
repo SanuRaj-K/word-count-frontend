@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
 
 const Table = () => {
   const [listData, setListData] = useState([]);
@@ -19,12 +21,13 @@ const Table = () => {
   }, []);
 
   const handleFavourite = (id, value) => {
+    const toastId=toast.loading('Loading...')
     if (value) {
       axios
         .put(`/removefav/${id}`)
         .then((res) => {
           console.log(res.data);
-          toast.success(res.data.message);
+          toast.success(res.data.message, {id:toastId});
           setListData((prevData) =>
             prevData.map((item) =>
               item.searchId === id ? { ...item, favourite: false } : item
@@ -39,7 +42,7 @@ const Table = () => {
         .put(`/addfav/${id}`)
         .then((res) => {
           console.log(res.data);
-          toast.success(res.data.message);
+          toast.success(res.data.message, {id:toastId});
           setListData((prevData) =>
             prevData.map((item) =>
               item.searchId === id ? { ...item, favourite: true } : item
@@ -54,11 +57,12 @@ const Table = () => {
   
 
   const handleDelete = (id) => {
+    const toastId= toast.loading('Loading...')
     axios
       .delete(`/delete/${id}`)
       .then((res) => {
         console.log(res.data);
-        toast.success(res.data.message);
+        toast.success(res.data.message, {id:toastId});
         setListData((prevItems) =>
           prevItems.filter((item) => item.searchId !== id)
         );
