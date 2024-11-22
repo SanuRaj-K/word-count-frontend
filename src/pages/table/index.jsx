@@ -8,7 +8,7 @@ const Table = () => {
 
   useEffect(() => {
     axios
-      .get("l/ist")
+      .get("/list")
       .then((res) => {
         const data = res.data.data;
         setListData(data);
@@ -16,7 +16,7 @@ const Table = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [listData]);
+  }, []);
 
   const handleFavourite = (id, value) => {
     if (value) {
@@ -25,11 +25,11 @@ const Table = () => {
         .then((res) => {
           console.log(res.data);
           toast.success(res.data.message);
-          setListData((prevData) => {
+          setListData((prevData) =>
             prevData.map((item) =>
               item.searchId === id ? { ...item, favourite: false } : item
-            );
-          });
+            )
+          );
         })
         .catch((err) => {
           console.log(err);
@@ -40,17 +40,19 @@ const Table = () => {
         .then((res) => {
           console.log(res.data);
           toast.success(res.data.message);
-          setListData((prevData) => {
+          setListData((prevData) =>
             prevData.map((item) =>
               item.searchId === id ? { ...item, favourite: true } : item
-            );
-          });
+            )
+          );
         })
         .catch((err) => {
           console.log(err);
         });
     }
   };
+  
+
   const handleDelete = (id) => {
     axios
       .delete(`/delete/${id}`)
