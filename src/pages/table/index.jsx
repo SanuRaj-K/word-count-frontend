@@ -1,21 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Table = () => {
   const [listData, setListData] = useState([]);
 
   useEffect(() => {
-    const toastID = toast.loading("Loading...");
-
     axios
-      .get("/list")
+      .get("l/ist")
       .then((res) => {
         const data = res.data.data;
         setListData(data);
-        toast.remove(toastID);
       })
       .catch((err) => {
         console.log(err);
@@ -23,14 +19,12 @@ const Table = () => {
   }, [listData]);
 
   const handleFavourite = (id, value) => {
-    const toastID = toast.loading("Loading...");
-
     if (value) {
       axios
         .put(`/removefav/${id}`)
         .then((res) => {
           console.log(res.data);
-          toast.success(res.data.message, { id: toastID });
+          toast.success(res.data.message);
           setListData((prevData) => {
             prevData.map((item) =>
               item.searchId === id ? { ...item, favourite: false } : item
@@ -45,7 +39,7 @@ const Table = () => {
         .put(`/addfav/${id}`)
         .then((res) => {
           console.log(res.data);
-          toast.success(res.data.message, { id: toastID });
+          toast.success(res.data.message);
           setListData((prevData) => {
             prevData.map((item) =>
               item.searchId === id ? { ...item, favourite: true } : item
@@ -58,13 +52,11 @@ const Table = () => {
     }
   };
   const handleDelete = (id) => {
-    const toastID = toast.loading("Loading...");
-
     axios
       .delete(`/delete/${id}`)
       .then((res) => {
         console.log(res.data);
-        toast.success(res.data.message, { id: toastID });
+        toast.success(res.data.message);
         setListData((prevItems) =>
           prevItems.filter((item) => item.searchId !== id)
         );

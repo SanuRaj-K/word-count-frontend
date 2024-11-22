@@ -1,24 +1,19 @@
 import axios from "axios";
 import React, { useState } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-// import { toast } from "react-toastify";
-
+import { toast } from "react-toastify";
 
 const Search = () => {
   const [domainName, setDomainName] = useState("");
   const navigate = useNavigate();
 
   const handleGetInsights = () => {
-    const toastID = toast.loading("Loading...");
     if (domainName.length < 1) {
-      toast.error("Please enter your URL", { id: toastID });
-    } else {
+      toast.error("Please enter your URL");
+    } else  {
       const regex = /^(ftp|http|https):\/\/[^ "]+$/;
       if (!regex.test(domainName)) {
-        toast.error("Invalid URL... Please enter a valid domain name.", {
-          id: toastID,
-        });
+        toast.error("Invalid URL. Please enter a valid domain name.");
         return;
       }
     }
@@ -29,12 +24,12 @@ const Search = () => {
         if (res.status === 200) {
           navigate("/table");
         } else {
-          toast.error("something went wrong...", { toastId: toastID });
+          toast.error("something went wrong...");
         }
       })
       .catch((err) => {
         console.log("err", err);
-        toast.error("Domain name is already searched", { toastId: toastID });
+        toast.error("Domain name is already searched");
       });
   };
   return (

@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { Toaster } from "react-hot-toast";
 
 function App() {
   // axios.defaults.baseURL = "http://localhost:5001/search";
@@ -13,11 +12,7 @@ function App() {
   axios.defaults.baseURL = "https://wordcount-z0dq.onrender.com";
   return (
     <div className="App bg-white">
-      {/* <ToastContainer position="top-right" /> */}
-      <Toaster
-  position="top-right"
-  reverseOrder={false}
-/>
+      <ToastContainer autoClose='2000' position="top-right" />
 
       <Routes>
         <Route path="/" element={<Search />} />
