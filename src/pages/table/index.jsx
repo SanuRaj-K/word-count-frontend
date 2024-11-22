@@ -74,7 +74,7 @@ const Table = () => {
 
   return (
     <>
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+      <div className="overflow-hidden min-h-screen rounded-lg border border-gray-200 shadow-md m-5">
         {listData?.length === 0 ? (
           <div className=" h-screen w-full flex   justify-center items-center text-center">
             <div>
