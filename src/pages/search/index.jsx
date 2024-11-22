@@ -10,7 +10,7 @@ const Search = () => {
   const handleGetInsights = () => {
     if (domainName.length < 1) {
       toast.error("Please enter your URL");
-    } else  {
+    } else {
       const regex = /^(ftp|http|https):\/\/[^ "]+$/;
       if (!regex.test(domainName)) {
         toast.error("Invalid URL. Please enter a valid domain name.");
