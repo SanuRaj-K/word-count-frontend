@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 function App() {
   // axios.defaults.baseURL = "http://localhost:5001/search";
   axios.defaults.withCredentials=true
-  axios.defaults.baseURL = "https://wordcount-z0dq.onrender.com";
+  axios.defaults.baseURL = "https://wordcount-z0dq.onrender.com/search";
   return (
     <div className="App bg-white">
       <ToastContainer autoClose='2000' position="top-right" />
