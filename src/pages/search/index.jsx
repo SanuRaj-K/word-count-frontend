@@ -8,23 +8,23 @@ const Search = () => {
   const navigate = useNavigate();
 
   const handleGetInsights = () => {
-    if(domainName.length<1){
-      toast.error('please enter the correct url')
+    const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+    if (!regex.test(domainName)) {
+      toast.error("Invalid URL. Please enter a valid domain name.");
+      return;
     }
     axios
       .post("/posturl", { domainName })
       .then((res) => {
-
-         if (res.status === 200) {
+        if (res.status === 200) {
           navigate("/table");
         } else {
-          
-         toast.error('This domain is already searched')
-          
+          toast.error("something went wrong...");
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log("err", err);
+        toast.error("Domain name is already searched");
       });
   };
   return (
