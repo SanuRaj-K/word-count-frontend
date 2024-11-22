@@ -14,7 +14,7 @@ const Search = () => {
     } else {
       const regex = /^(ftp|http|https):\/\/[^ "]+$/;
       if (!regex.test(domainName)) {
-        toast.error("Invalid URL. Please enter a valid domain name.", {
+        toast.error("Invalid URL...! Please enter a valid domain name.", {
           toastId: toastID,
         });
         return;
